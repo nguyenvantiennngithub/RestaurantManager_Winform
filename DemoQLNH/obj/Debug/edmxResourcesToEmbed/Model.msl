@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="RestaurantManagerModelStoreContainer" CdmEntityContainer="RestaurantManagerEntities">
+    <EntitySetMapping Name="Areas">
+      <EntityTypeMapping TypeName="RestaurantManagerModel.Area">
+        <MappingFragment StoreEntitySet="Area">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="displayName" ColumnName="displayName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Bills">
+      <EntityTypeMapping TypeName="RestaurantManagerModel.Bill">
+        <MappingFragment StoreEntitySet="Bill">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="dateCheckin" ColumnName="dateCheckin" />
+          <ScalarProperty Name="dateCheckout" ColumnName="dateCheckout" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="idTable" ColumnName="idTable" />
+          <ScalarProperty Name="sender" ColumnName="sender" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BillDetails">
+      <EntityTypeMapping TypeName="RestaurantManagerModel.BillDetail">
+        <MappingFragment StoreEntitySet="BillDetail">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="idBill" ColumnName="idBill" />
+          <ScalarProperty Name="idFood" ColumnName="idFood" />
+          <ScalarProperty Name="countFood" ColumnName="countFood" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Foods">
+      <EntityTypeMapping TypeName="RestaurantManagerModel.Food">
+        <MappingFragment StoreEntitySet="Food">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="displayName" ColumnName="displayName" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="idFoodCategory" ColumnName="idFoodCategory" />
+          <ScalarProperty Name="calcUnit" ColumnName="calcUnit" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FoodCategories">
+      <EntityTypeMapping TypeName="RestaurantManagerModel.FoodCategory">
+        <MappingFragment StoreEntitySet="FoodCategory">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="displayName" ColumnName="displayName" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tables">
+      <EntityTypeMapping TypeName="RestaurantManagerModel.Table">
+        <MappingFragment StoreEntitySet="Table">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="displayName" ColumnName="displayName" />
+          <ScalarProperty Name="idArea" ColumnName="idArea" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="RestaurantManagerModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="displayName" ColumnName="displayName" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

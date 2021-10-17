@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RestaurantManagerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Area">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="displayName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Tables" Relationship="Self.FK__Table__idArea__2A4B4B5E" FromRole="Area" ToRole="Table" />
+  </EntityType>
+  <EntityType Name="Bill">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="dateCheckin" Type="DateTime" Precision="3" />
+    <Property Name="dateCheckout" Type="DateTime" Precision="3" />
+    <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="idTable" Type="Int32" Nullable="false" />
+    <Property Name="sender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Table" Relationship="Self.FK__Bill__idTable__36B12243" FromRole="Bill" ToRole="Table" />
+    <NavigationProperty Name="User" Relationship="Self.FK__Bill__sender__37A5467C" FromRole="Bill" ToRole="User" />
+    <NavigationProperty Name="BillDetails" Relationship="Self.FK__BillDetai__idBil__3A81B327" FromRole="Bill" ToRole="BillDetail" />
+  </EntityType>
+  <EntityType Name="BillDetail">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idBill" Type="Int32" />
+    <Property Name="idFood" Type="Int32" />
+    <Property Name="countFood" Type="Int32" />
+    <NavigationProperty Name="Bill" Relationship="Self.FK__BillDetai__idBil__3A81B327" FromRole="BillDetail" ToRole="Bill" />
+    <NavigationProperty Name="Food" Relationship="Self.FK__BillDetai__idFoo__3B75D760" FromRole="BillDetail" ToRole="Food" />
+  </EntityType>
+  <EntityType Name="Food">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="displayName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="price" Type="Int32" Nullable="false" />
+    <Property Name="idFoodCategory" Type="Int32" Nullable="false" />
+    <Property Name="calcUnit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="BillDetails" Relationship="Self.FK__BillDetai__idFoo__3B75D760" FromRole="Food" ToRole="BillDetail" />
+    <NavigationProperty Name="FoodCategory" Relationship="Self.FK__Food__idFoodCate__31EC6D26" FromRole="Food" ToRole="FoodCategory" />
+  </EntityType>
+  <EntityType Name="FoodCategory">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="displayName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Foods" Relationship="Self.FK__Food__idFoodCate__31EC6D26" FromRole="FoodCategory" ToRole="Food" />
+  </EntityType>
+  <EntityType Name="Table">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="displayName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="idArea" Type="Int32" Nullable="false" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Area" Relationship="Self.FK__Table__idArea__2A4B4B5E" FromRole="Table" ToRole="Area" />
+    <NavigationProperty Name="Bills" Relationship="Self.FK__Bill__idTable__36B12243" FromRole="Table" ToRole="Bill" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="username" />
+    </Key>
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="displayName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="phoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Bills" Relationship="Self.FK__Bill__sender__37A5467C" FromRole="User" ToRole="Bill" />
+  </EntityType>
+  <Association Name="FK__Table__idArea__2A4B4B5E">
+    <End Role="Area" Type="Self.Area" Multiplicity="1" />
+    <End Role="Table" Type="Self.Table" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Area">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Table">
+        <PropertyRef Name="idArea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Bill__idTable__36B12243">
+    <End Role="Table" Type="Self.Table" Multiplicity="1" />
+    <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Table">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Bill">
+        <PropertyRef Name="idTable" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Bill__sender__37A5467C">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="username" />
+      </Principal>
+      <Dependent Role="Bill">
+        <PropertyRef Name="sender" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BillDetai__idBil__3A81B327">
+    <End Role="Bill" Type="Self.Bill" Multiplicity="0..1" />
+    <End Role="BillDetail" Type="Self.BillDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bill">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="BillDetail">
+        <PropertyRef Name="idBill" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BillDetai__idFoo__3B75D760">
+    <End Role="Food" Type="Self.Food" Multiplicity="0..1" />
+    <End Role="BillDetail" Type="Self.BillDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Food">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="BillDetail">
+        <PropertyRef Name="idFood" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Food__idFoodCate__31EC6D26">
+    <End Role="FoodCategory" Type="Self.FoodCategory" Multiplicity="1" />
+    <End Role="Food" Type="Self.Food" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FoodCategory">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Food">
+        <PropertyRef Name="idFoodCategory" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="RestaurantManagerEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Areas" EntityType="Self.Area" />
+    <EntitySet Name="Bills" EntityType="Self.Bill" />
+    <EntitySet Name="BillDetails" EntityType="Self.BillDetail" />
+    <EntitySet Name="Foods" EntityType="Self.Food" />
+    <EntitySet Name="FoodCategories" EntityType="Self.FoodCategory" />
+    <EntitySet Name="Tables" EntityType="Self.Table" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <AssociationSet Name="FK__Table__idArea__2A4B4B5E" Association="Self.FK__Table__idArea__2A4B4B5E">
+      <End Role="Area" EntitySet="Areas" />
+      <End Role="Table" EntitySet="Tables" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Bill__idTable__36B12243" Association="Self.FK__Bill__idTable__36B12243">
+      <End Role="Table" EntitySet="Tables" />
+      <End Role="Bill" EntitySet="Bills" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Bill__sender__37A5467C" Association="Self.FK__Bill__sender__37A5467C">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Bill" EntitySet="Bills" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BillDetai__idBil__3A81B327" Association="Self.FK__BillDetai__idBil__3A81B327">
+      <End Role="Bill" EntitySet="Bills" />
+      <End Role="BillDetail" EntitySet="BillDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BillDetai__idFoo__3B75D760" Association="Self.FK__BillDetai__idFoo__3B75D760">
+      <End Role="Food" EntitySet="Foods" />
+      <End Role="BillDetail" EntitySet="BillDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Food__idFoodCate__31EC6D26" Association="Self.FK__Food__idFoodCate__31EC6D26">
+      <End Role="FoodCategory" EntitySet="FoodCategories" />
+      <End Role="Food" EntitySet="Foods" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6c6a74a6e8854a148ebe227defe8492d" Name="Diagram1">
+        <EntityTypeShape EntityType="RestaurantManagerModel.Area" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestaurantManagerModel.Bill" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestaurantManagerModel.BillDetail" Width="1.5" PointX="7.5" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestaurantManagerModel.BookingTable" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestaurantManagerModel.Customer" Width="1.5" PointX="3" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestaurantManagerModel.Food" Width="1.5" PointX="5.25" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestaurantManagerModel.FoodCategory" Width="1.5" PointX="3" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestaurantManagerModel.Table" Width="1.5" PointX="3" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestaurantManagerModel.User" Width="1.5" PointX="3" PointY="11.875" IsExpanded="true" />
+        <AssociationConnector Association="RestaurantManagerModel.FK__Table__displayNa__2B3F6F97" ManuallyRouted="false" />
+        <AssociationConnector Association="RestaurantManagerModel.FK__Bill__idBookingT__3F466844" ManuallyRouted="false" />
+        <AssociationConnector Association="RestaurantManagerModel.FK__Bill__idCustomer__3E52440B" ManuallyRouted="false" />
+        <AssociationConnector Association="RestaurantManagerModel.FK__Bill__idTable__403A8C7D" ManuallyRouted="false" />
+        <AssociationConnector Association="RestaurantManagerModel.FK__Bill__sender__412EB0B6" ManuallyRouted="false" />
+        <AssociationConnector Association="RestaurantManagerModel.FK__BillDetai__idBil__440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="RestaurantManagerModel.FK__BillDetai__displ__44FF419A" ManuallyRouted="false" />
+        <AssociationConnector Association="RestaurantManagerModel.FK__Food__displayNam__32E0915F" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
